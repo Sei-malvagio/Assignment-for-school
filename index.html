@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script defer src="/app.js"></script>
+  <script src="/cdn_modules/axios@1.7.2/axios.min.js"></script>
+  <script defer src="/auth.js"></script>
+  <title>Tugas pak DZ</title>
+
+  <style>
+    ::placeholder {
+      font-size: .9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="bg-gradient-to-t from-zinc-800 to-zinc-700 to-90% min-h-screen flex justify-center items-center">
+    <div class="px-4 mx-auto">
+      <div class="bg-white md:flex md:flex-row rounded-lg shadow-lg">
+        <div class="py-12 md:pt-18 px-7 space-y-5">
+          <div class="space-y-4">
+            <h1 class="bg-gradient-to-r from-lime-800 to-slate-700 bg-clip-text text-transparent font-bold text-2xl block text-center">
+              Sign up</h1>
+            <div>
+              <h2 class="font-medium text-lg text-zinc-600">Selamat datang user baru👋</h2>
+              <p class="text-gray-500 text-sm w-52">Adventure kamu akan segera dimulai, Ayo cepat buat akun barumu!</p>
+            </div>
+          </div>
+          <form class="flex flex-col gap-y-2 md:gap-y-3" id="signup">
+            <div class="space-y-1">
+              <label for="nama" class="font-medium text-sm md:text-normal text-[#0A3343]">
+                Nama lengkap Anda
+              </label>
+              <input id="nama" name="nama" type="text" placeholder="Masukkan nama" class="py-1 md:py-2 px-3 md:px-4 border border-gray-300 w-full focus:outline-green-800/80 rounded placeholder-gray-400">
+              <p class="text-red-400 text-xs validate hidden" data-fill="nama">Nama tidak boleh kosong!</p>
+            </div>
+            <div class="space-y-1">
+              <label for="email" class="font-medium text-sm md:text-normal text-[#0A3343]">
+                Email
+              </label>
+              <input id="email" name="email" type="email" placeholder="Masukkan email" class="py-1 md:py-2 px-3 md:px-4 border border-gray-300 w-full focus:outline-green-800/80 rounded placeholder-gray-400">
+              <p class="text-red-400 text-xs validate hidden" data-fill="email">Email tidak boleh kosong!</p>
+            </div>
+            <div class="space-y-1">
+              <label for="password" class="font-medium text-sm md:text-normal text-[#0A3343]">
+                Password
+              </label>
+              <input id="password" type="password" name="password" placeholder="Masukkan password" class="py-1 px-3 md:px-4 border border-gray-300 w-full focus:outline-green-800/80 rounded placeholder-gray-400">
+              <p class="text-red-400 text-xs validate hidden" data-fill="pw">Password tidak boleh kosong!</p>
+            </div>
+            <div class="space-y-1">
+              <label for="pekerjaan" class="font-medium text-sm md:text-normal text-[#0A3343]">
+                Pekerjaan
+              </label>
+              <select name="pekerjaan" id="pekerjaan" aria-label="Pilih pekerjaan" class="py-1 md:py-2 px-3 md:px-4 border border-gray-300 w-full focus:outline-green-800/80 rounded bg-white" required>
+                <option selected>-- Pilih --</option>
+                <option value="Programmer">
+                  Programmer
+                </option>
+                <option value="Software Engineering">
+                  Software Engineering
+                </option>
+                <option value="Game Developer">
+                  Game Developer
+                </option>
+                <option value="DevOps Engineer">
+                  DevOps Engineer
+                </option>
+                <option value="Mobile App Developer">
+                  Mobile App Developer
+                </option>
+                <option value="Web Developer">
+                  Web Developer
+                </option>
+                <option value="Fullstack Developer">
+                  Fullstack Developer
+                </option>
+                <option value="IT Support">
+                  IT Support
+                </option>
+                <option value="Cloud Architect">
+                  Cloud Architect
+                </option>
+                <option value="IT Maintenance">
+                  IT Maintenance
+                </option>
+                <option value="Software Developer">
+                  Software Developer
+                </option>
+                <option value="AI/ML Programmer">
+                  AI/ML Programmer
+                </option>
+                <option value="Network Administrator">
+                  Network Administrator
+                </option>
+                <option value="Information Security Specialist">
+                  Information Security Specialist
+                </option>
+                <option value="Data Analyst">
+                  Data Analyst
+                </option>
+                <option value="Product Manager">
+                  Product Manager
+                </option>
+                <option value="IT Consultant">
+                  IT Consultant
+                </option>
+              </select>
+              <p class="text-red-400 text-xs validate hidden" data-fill="job">Pilih salah satu pekerjaan!</p>
+            </div>
+            <div class="space-y-1">
+              <label for="gender" class="font-medium text-sm md:text-normal text-[#0A3343]">
+                Jenis kelamin
+              </label>
+              <div class="flex flex-row gap-x-5">
+                <div class="flex gap-x-2 items-center">
+                  <input id="gender1" type="radio" name="gender" value="Laki-laki" required>
+                  <label for="gender1">
+                    Laki-Laki
+                  </label>
+                </div>
+                <div class="flex gap-x-2 items-center">
+                  <input id="gender2" type="radio" name="gender" value="Perempuan" required>
+                  <label for="gender2">
+                    Perempuan
+                  </label>
+                </div>
+                <p class="text-red-400 text-xs validate hidden" data-fill="gender">Pilih salah satu jenis kelamin!</p>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex flex-row items-center gap-x-2">
+                <input id="agree" type="checkbox" class="cbox">
+                <label for="agree" class="text-[#0A3343]">
+                  I agree to <span class="text-green-900 font-medium">terms</span> & <span class="text-green-900 font-medium">conditions</span>
+                </label>
+              </div>
+              <p class="text-red-400 text-xs validates hidden" data-fill="terms">Harap di checklist!</p>
+            </div>
+            <button type="submit" class="bg-[#0A3343] py-2 px-5 text-white font-nomal w-fit rounded mt-3 cursor-pointer flex flex-row items-center gap-x-1 duration-200 hover:opacity-75">
+              Sign up
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8" />
+              </svg>
+            </button>
+            <div class="flex justify-center">
+              <p id="signup_text" class=" text-center py-2 px-3 rounded font-medium text-[.9rem] hidden">
+              </p>
+            </div>
+          </form>
+        </div>
+        <img src="/assest/portrait.jpg" alt="potrait" width="500" height="300" class="rounded-lg hidden md:block">
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
